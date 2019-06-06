@@ -11,10 +11,6 @@ pipeline {
         always {
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
-             mail to: 'itzme.ravi@gmail.com',
-             subject: "Always ... Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Always .... ${env.BUILD_URL}"
-
         }
         success {
             echo 'I succeeeded!'
@@ -23,9 +19,7 @@ pipeline {
             echo 'I am unstable :/'
         }
         failure {
-             mail to: 'itzme.ravi@gmail.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+            echo 'I failed :('
         }
         changed {
             echo 'Things were different before...'
